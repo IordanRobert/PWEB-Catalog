@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabel cu studenti</title>
+
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="navbar">
+    <a th:href="@{/studenti}">Studenti</a>
+    <a th:href="@{/note}">Note</a>
+</div>
+
+<div class="content">
+
+    <h2>Studenti</h2>
+    <div class="table__container">
+        <table>
+            <colgroup>
+                <col span="1" style="width:22.5%;">
+                <col span="1" style="width:22.5%;">
+                <col span="1" style="width:27.5%;">
+                <col span="1" style="width:27.5%;">
+            </colgroup>
+
+            <thead>
+            <tr>
+                <td>Nume</td>
+                <td>Prenume</td>
+                <td>Email</td>
+                <td>Telefon</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="s: ${studenti}">
+                <td th:text="${s.numeStudent}"></td>
+                <td th:text="${s.prenumeStudent}"></td>
+                <td th:text="${s.email}"></td>
+                <td th:text="${s.telefon}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="input__container">
+    <form method="post" action="/addStudent" modelAttribute="student">
+        <input type="text" placeholder="Nume" name="numeStudent">
+        <input type="text" placeholder="Prenume" name="prenumeStudent">
+        <input type="email" placeholder="Email" name="email">
+        <input type="tel" placeholder="Telefon" name="telefon">
+        <button type="submit">+</button>
+    </form>
+</div>
+
+</body>
+</html>
